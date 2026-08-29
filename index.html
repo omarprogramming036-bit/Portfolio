@@ -1,0 +1,1729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Omar Script — Developer, Game Builder, Creator and Founder."
+  />
+
+  <title>Omar Script | Developer & Builder</title>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+    :root {
+      --bg: #050505;
+      --bg-soft: #0a0a0a;
+      --card: #0d0d0d;
+      --card-hover: #111;
+      --text: #f5f5f5;
+      --muted: #888;
+      --muted-light: #aaa;
+      --border: rgba(255,255,255,.09);
+      --border-hover: rgba(255,255,255,.2);
+      --white: #fff;
+      --accent: #8b5cf6;
+      --accent-2: #6366f1;
+      --glow: rgba(139, 92, 246, .25);
+      --radius: 20px;
+      --max: 1180px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Inter", sans-serif;
+      background:
+        radial-gradient(circle at 50% -10%, rgba(139,92,246,.12), transparent 35%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    ::selection {
+      background: var(--accent);
+      color: white;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(92%, var(--max));
+      margin: auto;
+    }
+
+    /* =========================
+       NAVBAR
+    ========================= */
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 18px 0;
+      transition: .3s;
+    }
+
+    header.scrolled {
+      background: rgba(5,5,5,.75);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Space Grotesk", sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .logo-mark {
+      width: 38px;
+      height: 38px;
+      border: 1px solid var(--border-hover);
+      border-radius: 11px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(145deg, #151515, #090909);
+      box-shadow: 0 0 30px rgba(139,92,246,.08);
+    }
+
+    .logo-mark span {
+      color: #fff;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+      color: var(--muted-light);
+      font-size: .9rem;
+    }
+
+    .nav-links a {
+      transition: .25s;
+    }
+
+    .nav-links a:hover {
+      color: white;
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 0;
+      color: white;
+      cursor: pointer;
+      font-size: 1.5rem;
+    }
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-top: 100px;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 550px;
+      height: 550px;
+      background: radial-gradient(circle, rgba(139,92,246,.15), transparent 65%);
+      top: 5%;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      opacity: .17;
+      background-image:
+        linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+      mask-image: linear-gradient(to bottom, black, transparent 80%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 900px;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      border: 1px solid var(--border);
+      padding: 7px 13px;
+      border-radius: 100px;
+      color: var(--muted-light);
+      background: rgba(255,255,255,.025);
+      font-size: .8rem;
+      margin-bottom: 25px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      background: #4ade80;
+      border-radius: 50%;
+      box-shadow: 0 0 12px #4ade80;
+    }
+
+    .hero h1 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(3.1rem, 8vw, 7rem);
+      line-height: .95;
+      letter-spacing: -5px;
+      max-width: 950px;
+    }
+
+    .gradient-text {
+      background: linear-gradient(100deg, #fff, #aaa, #8b5cf6);
+      -webkit-background-clip: text;
+      color: transparent;
+      background-clip: text;
+    }
+
+    .hero-description {
+      max-width: 700px;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 28px 0 35px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 13px 20px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: .9rem;
+      font-weight: 600;
+      transition: .25s;
+      cursor: pointer;
+    }
+
+    .btn-primary {
+      background: white;
+      color: black;
+      border-color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(255,255,255,.15);
+    }
+
+    .btn-secondary {
+      background: rgba(255,255,255,.03);
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--border-hover);
+      background: rgba(255,255,255,.07);
+    }
+
+    /* =========================
+       GENERAL
+    ========================= */
+
+    section {
+      padding: 110px 0;
+    }
+
+    .section-header {
+      margin-bottom: 45px;
+    }
+
+    .section-label {
+      color: #8b5cf6;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: .72rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      line-height: 1.1;
+      letter-spacing: -2px;
+    }
+
+    .section-description {
+      color: var(--muted);
+      max-width: 650px;
+      margin-top: 15px;
+    }
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .about-text p {
+      color: var(--muted-light);
+      margin-bottom: 20px;
+    }
+
+    .quote-card {
+      padding: 40px;
+      border: 1px solid var(--border);
+      background:
+        linear-gradient(145deg, rgba(139,92,246,.09), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .quote-card::before {
+      content: "</>";
+      position: absolute;
+      right: 25px;
+      top: 15px;
+      color: rgba(255,255,255,.04);
+      font-size: 7rem;
+      font-family: monospace;
+      font-weight: bold;
+    }
+
+    .quote-card h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.8rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .quote-card p {
+      color: var(--muted);
+      margin-top: 15px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =========================
+       PHILOSOPHY
+    ========================= */
+
+    .philosophy {
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: #080808;
+      text-align: center;
+    }
+
+    .philosophy h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
+      letter-spacing: -4px;
+    }
+
+    .philosophy p {
+      max-width: 650px;
+      margin: 20px auto 0;
+      color: var(--muted);
+    }
+
+    /* =========================
+       SKILLS
+    ========================= */
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .skill-card {
+      border: 1px solid var(--border);
+      background: var(--card);
+      border-radius: 16px;
+      padding: 25px;
+      transition: .3s;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--border-hover);
+      background: var(--card-hover);
+    }
+
+    .skill-card h3 {
+      font-size: 1rem;
+      margin-bottom: 15px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      color: var(--muted-light);
+      border: 1px solid var(--border);
+      padding: 5px 9px;
+      border-radius: 7px;
+      font-size: .75rem;
+      background: rgba(255,255,255,.025);
+    }
+
+    /* =========================
+       WCG
+    ========================= */
+
+    .wcg {
+      position: relative;
+    }
+
+    .wcg-card {
+      border: 1px solid var(--border);
+      border-radius: 25px;
+      padding: clamp(30px, 6vw, 70px);
+      background:
+        radial-gradient(circle at 90% 10%, rgba(139,92,246,.15), transparent 35%),
+        #0a0a0a;
+      overflow: hidden;
+    }
+
+    .wcg-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .wcg-title h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2.5rem, 5vw, 5rem);
+      letter-spacing: -4px;
+    }
+
+    .wcg-symbol {
+      font-family: monospace;
+      font-size: 3rem;
+      color: rgba(255,255,255,.15);
+    }
+
+    .wcg-card > p {
+      color: var(--muted-light);
+      max-width: 750px;
+    }
+
+    .wcg-features {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 10px;
+      margin-top: 35px;
+    }
+
+    .wcg-feature {
+      padding: 18px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--muted);
+      font-size: .85rem;
+    }
+
+    /* =========================
+       PROJECTS
+    ========================= */
+
+    .projects {
+      background: #080808;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2,1fr);
+      gap: 18px;
+    }
+
+    .project {
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: #0b0b0b;
+      transition: .35s;
+    }
+
+    .project:hover {
+      transform: translateY(-6px);
+      border-color: var(--border-hover);
+    }
+
+    .project-image {
+      height: 220px;
+      display: grid;
+      place-items: center;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, #111, #080808);
+    }
+
+    .project-image::before {
+      content: "";
+      position: absolute;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: rgba(139,92,246,.12);
+      filter: blur(30px);
+    }
+
+    .project-code {
+      font-family: monospace;
+      font-size: 3rem;
+      color: rgba(255,255,255,.15);
+      position: relative;
+    }
+
+    .project-content {
+      padding: 27px;
+    }
+
+    .project-number {
+      color: #8b5cf6;
+      font-size: .7rem;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    .project h3 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 1.5rem;
+      margin: 8px 0;
+    }
+
+    .project p {
+      color: var(--muted);
+      font-size: .9rem;
+    }
+
+    .project-status {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--muted-light);
+      font-size: .72rem;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 5px 10px;
+    }
+
+    /* =========================
+       TEACHING
+    ========================= */
+
+    .teaching-grid {
+      display: grid;
+      grid-template-columns: .8fr 1.2fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .big-number {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(6rem, 15vw, 13rem);
+      font-weight: 900;
+      line-height: .8;
+      background: linear-gradient(180deg, #fff, #222);
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .teaching-content p {
+      color: var(--muted-light);
+      margin-bottom: 18px;
+    }
+
+    .steps {
+      margin-top: 30px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .step {
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 15px 18px;
+      display: flex;
+      gap: 15px;
+      align-items: center;
+      background: var(--card);
+    }
+
+    .step span {
+      width: 30px;
+      height: 30px;
+      display: grid;
+      place-items: center;
+      border-radius: 8px;
+      background: rgba(139,92,246,.12);
+      color: #a78bfa;
+      font-size: .8rem;
+      font-weight: bold;
+    }
+
+    /* =========================
+       VISION
+    ========================= */
+
+    .vision {
+      text-align: center;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(139,92,246,.1), transparent 50%),
+        #070707;
+    }
+
+    .vision h2 {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
+      letter-spacing: -4px;
+      max-width: 950px;
+      margin: auto;
+      line-height: 1;
+    }
+
+    .vision-text {
+      color: var(--muted);
+      max-width: 750px;
+      margin: 30px auto;
+    }
+
+    .cycle {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-top: 40px;
+    }
+
+    .cycle-item {
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.025);
+      padding: 13px 18px;
+      border-radius: 50px;
+      font-size: .85rem;
+    }
+
+    .arrow {
+      color: #8b5cf6;
+    }
+
+    /* =========================
+       SOCIAL
+    ========================= */
+
+    .socials {
+      display: grid;
+      grid-template-columns: repeat(5,1fr);
+      gap: 10px;
+    }
+
+    .social {
+      border: 1px solid var(--border);
+      padding: 18px;
+      border-radius: 14px;
+      text-align: center;
+      color: var(--muted);
+      transition: .25s;
+      font-size: .85rem;
+    }
+
+    .social:hover {
+      color: white;
+      border-color: var(--border-hover);
+      transform: translateY(-3px);
+    }
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 60px 0 30px;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 30px;
+    }
+
+    .footer-title {
+      font-family: "Space Grotesk", sans-serif;
+      font-size: 2rem;
+    }
+
+    .footer-sub {
+      color: var(--muted);
+      margin-top: 5px;
+    }
+
+    .copyright {
+      color: #555;
+      font-size: .75rem;
+      margin-top: 50px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+
+    /* =========================
+       REVEAL ANIMATION
+    ========================= */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =========================
+       RESPONSIVE
+    ========================= */
+
+    @media (max-width: 850px) {
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        right: 4%;
+        left: 4%;
+        display: none;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px;
+        background: rgba(10,10,10,.95);
+        backdrop-filter: blur(20px);
+        border: 1px solid var(--border);
+        border-radius: 15px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        display: block;
+        padding: 13px;
+      }
+
+      .menu-btn {
+        display: block;
+      }
+
+      .about-grid,
+      .teaching-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .skills-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .wcg-features {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .socials {
+        grid-template-columns: repeat(3,1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      section {
+        padding: 80px 0;
+      }
+
+      .project-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .wcg-features {
+        grid-template-columns: 1fr;
+      }
+
+      .socials {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-top {
+        align-items: start;
+        flex-direction: column;
+      }
+
+      .quote-card {
+        padding: 28px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================= -->
+
+  <header id="header">
+    <div class="container nav">
+
+      <a href="#home" class="logo">
+        <div class="logo-mark">
+          O<span>|</span>S
+        </div>
+        <span>Omar Script</span>
+      </a>
+
+      <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+        ☰
+      </button>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#wcg">WCG</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#vision">Vision</a></li>
+        <li><a href="#social">Social</a></li>
+      </ul>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero" id="home">
+
+      <div class="grid-bg"></div>
+
+      <div class="container">
+
+        <div class="hero-content reveal">
+
+          <div class="badge">
+            <span class="status-dot"></span>
+            Building the future
+          </div>
+
+          <h1>
+            I don't just use
+            <span class="gradient-text">technology.</span>
+            <br>
+            I build it.
+          </h1>
+
+          <p class="hero-description">
+            I'm Omar Script — a self-taught developer, game builder and
+            creator who learns by understanding technology deeply,
+            rebuilding ideas from scratch, and turning knowledge into real projects.
+          </p>
+
+          <div class="hero-buttons">
+            <a href="#projects" class="btn btn-primary">
+              Explore My Work →
+            </a>
+
+            <a href="#about" class="btn btn-secondary">
+              About Me
+            </a>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =========================
+         ABOUT
+    ========================= -->
+
+    <section id="about">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+          <div class="section-label">01 — About</div>
+          <h2 class="section-title">
+            Curiosity became<br>
+            a way of building.
+          </h2>
+        </div>
+
+        <div class="about-grid">
+
+          <div class="about-text reveal">
+
+            <p>
+              I'm Omar Script, a self-taught developer who started
+              programming from zero.
+            </p>
+
+            <p>
+              My journey started with a simple question:
+              whenever I saw something powered by technology,
+              I wanted to know how it was made and what technology
+              made it possible.
+            </p>
+
+            <p>
+              I started with web development and quickly built a strong
+              foundation in JavaScript. From there, I expanded into
+              TypeScript, Python, C++, Rust, React, Node.js, Three.js
+              and many other technologies.
+            </p>
+
+            <p>
+              But I don't like using technology as a black box.
+              Before depending on a technology, I prefer to build
+              a smaller version of it and understand its strengths,
+              weaknesses and fundamentals.
+            </p>
+
+          </div>
+
+          <div class="quote-card reveal">
+
+            <h3>
+              Learn deeply.<br>
+              Build freely.
+            </h3>
+
+            <p>
+              Technology becomes more powerful when you understand
+              what happens underneath the abstraction.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PHILOSOPHY
+    ========================= -->
+
+    <section class="philosophy">
+
+      <div class="container reveal">
+
+        <div class="section-label">
+          My Philosophy
+        </div>
+
+        <h2>
+          Don't just use it.<br>
+          Understand it.
+        </h2>
+
+        <p>
+          I learn technology by rebuilding small versions of it,
+          experimenting with its limitations, and then using what
+          I learned to create something real.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SKILLS
+    ========================= -->
+
+    <section id="skills">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            02 — Skills
+          </div>
+
+          <h2 class="section-title">
+            Tools I build with.
+          </h2>
+
+          <p class="section-description">
+            A growing collection of languages, frameworks and
+            technologies I've learned and experimented with.
+          </p>
+
+        </div>
+
+
+        <div class="skills-grid">
+
+          <div class="skill-card reveal">
+            <h3>Languages</h3>
+
+            <div class="tags">
+              <span class="tag">HTML</span>
+              <span class="tag">CSS</span>
+              <span class="tag">JavaScript</span>
+              <span class="tag">TypeScript</span>
+              <span class="tag">Python</span>
+              <span class="tag">C++</span>
+              <span class="tag">Rust</span>
+            </div>
+          </div>
+
+
+          <div class="skill-card reveal">
+            <h3>Frameworks & Tools</h3>
+
+            <div class="tags">
+              <span class="tag">React</span>
+              <span class="tag">Node.js</span>
+              <span class="tag">Three.js</span>
+              <span class="tag">SCSS</span>
+              <span class="tag">Electron</span>
+            </div>
+          </div>
+
+
+          <div class="skill-card reveal">
+            <h3>Areas</h3>
+
+            <div class="tags">
+              <span class="tag">Front-End</span>
+              <span class="tag">Full-Stack</span>
+              <span class="tag">Game Dev</span>
+              <span class="tag">Canvas 2D</span>
+              <span class="tag">3D Math</span>
+              <span class="tag">Algorithms</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         WCG
+    ========================= -->
+
+    <section id="wcg" class="wcg">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            03 — Personal Framework
+          </div>
+
+          <h2 class="section-title">
+            WCG
+          </h2>
+
+        </div>
+
+
+        <div class="wcg-card reveal">
+
+          <div class="wcg-title">
+
+            <h2>WCG</h2>
+
+            <div class="wcg-symbol">
+              { }
+            </div>
+
+          </div>
+
+          <p>
+            WCG is my own framework and playground for building games,
+            interactive experiences and experimenting with ideas from
+            the ground up.
+          </p>
+
+          <p style="margin-top: 15px;">
+            It started because I noticed that many pieces of code
+            were repeating across my projects. Instead of repeatedly
+            writing the same details, I started building my own system
+            to make development more flexible and reusable.
+          </p>
+
+
+          <div class="wcg-features">
+
+            <div class="wcg-feature">
+              Game Development
+            </div>
+
+            <div class="wcg-feature">
+              Canvas 2D
+            </div>
+
+            <div class="wcg-feature">
+              3D Mathematics
+            </div>
+
+            <div class="wcg-feature">
+              Reusable Systems
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PROJECTS
+    ========================= -->
+
+    <section id="projects" class="projects">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            04 — Projects
+          </div>
+
+          <h2 class="section-title">
+            Things I've built.
+          </h2>
+
+          <p class="section-description">
+            Real projects are where my learning turns into experience.
+          </p>
+
+        </div>
+
+
+        <div class="project-grid">
+
+
+          <!-- Project 01 -->
+
+          <article class="project reveal">
+
+            <div class="project-image">
+              <div class="project-code">
+                CRUD
+              </div>
+            </div>
+
+            <div class="project-content">
+
+              <div class="project-number">
+                PROJECT 01
+              </div>
+
+              <h3>Product Management System</h3>
+
+              <p>
+                One of my first major JavaScript projects.
+                Building it gave me a strong foundation in JavaScript
+                and problem solving.
+              </p>
+
+              <span class="project-status">
+                JavaScript
+              </span>
+
+            </div>
+
+          </article>
+
+
+          <!-- Project 02 -->
+
+          <article class="project reveal">
+
+            <div class="project-image">
+              <div class="project-code">
+                Canvas
+              </div>
+            </div>
+
+            <div class="project-content">
+
+              <div class="project-number">
+                PROJECT 02
+              </div>
+
+              <h3>Mini Photoshop</h3>
+
+              <p>
+                A lightweight image editing application with image
+                uploading, drawing, zooming, canvas resizing,
+                RGBA colors and LocalStorage support.
+              </p>
+
+              <span class="project-status">
+                Canvas · JavaScript
+              </span>
+
+            </div>
+
+          </article>
+
+
+          <!-- Project 03 -->
+
+          <article class="project reveal">
+
+            <div class="project-image">
+              <div class="project-code">
+                GAME
+              </div>
+            </div>
+
+            <div class="project-content">
+
+              <div class="project-number">
+                PROJECT 03
+              </div>
+
+              <h3>Web Games</h3>
+
+              <p>
+                Games built from scratch using HTML, CSS and JavaScript,
+                later packaged as desktop applications with Electron.
+              </p>
+
+              <span class="project-status">
+                JavaScript · Electron
+              </span>
+
+            </div>
+
+          </article>
+
+
+          <!-- Project 04 -->
+
+          <article class="project reveal">
+
+            <div class="project-image">
+              <div class="project-code">
+                EDIT
+              </div>
+            </div>
+
+            <div class="project-content">
+
+              <div class="project-number">
+                PROJECT 04
+              </div>
+
+              <h3>Mini Video Editor</h3>
+
+              <p>
+                A video editing project currently under development,
+                built as another step toward creating complete
+                software products.
+              </p>
+
+              <span class="project-status">
+                In Development
+              </span>
+
+            </div>
+
+          </article>
+
+
+          <!-- Project 05 -->
+
+          <article class="project reveal">
+
+            <div class="project-image">
+              <div class="project-code">
+                MARKET
+              </div>
+            </div>
+
+            <div class="project-content">
+
+              <div class="project-number">
+                PROJECT 05
+              </div>
+
+              <h3>Arabic Marketplace</h3>
+
+              <p>
+                A future marketplace designed for Arabic-speaking users,
+                with flexible pricing, currencies, countries,
+                negotiation, reviews, chat and a complaint system.
+              </p>
+
+              <span class="project-status">
+                Coming Soon
+              </span>
+
+            </div>
+
+          </article>
+
+
+          <!-- Project 06 -->
+
+          <article class="project reveal">
+
+            <div class="project-image">
+              <div class="project-code">
+                WCG
+              </div>
+            </div>
+
+            <div class="project-content">
+
+              <div class="project-number">
+                PROJECT 06
+              </div>
+
+              <h3>WCG Framework</h3>
+
+              <p>
+                My personal framework for experiments, games,
+                reusable systems and exploring how technologies
+                work underneath the surface.
+              </p>
+
+              <span class="project-status">
+                Active Development
+              </span>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         TEACHING
+    ========================= -->
+
+    <section id="teaching">
+
+      <div class="container">
+
+        <div class="teaching-grid">
+
+          <div class="reveal">
+            <div class="section-label">
+              05 — Teaching
+            </div>
+
+            <div class="big-number">
+              01
+            </div>
+          </div>
+
+
+          <div class="teaching-content reveal">
+
+            <h2 class="section-title">
+              Learn.<br>
+              Build.<br>
+              Teach.
+            </h2>
+
+            <p style="margin-top:25px;">
+              I don't want to keep knowledge for myself.
+              I've already started teaching my first student,
+              currently helping them learn Python.
+            </p>
+
+            <p>
+              My teaching style focuses on understanding first,
+              then applying the knowledge through projects.
+            </p>
+
+
+            <div class="steps">
+
+              <div class="step">
+                <span>01</span>
+                Understand the idea
+              </div>
+
+              <div class="step">
+                <span>02</span>
+                Learn the concept
+              </div>
+
+              <div class="step">
+                <span>03</span>
+                Build a real project
+              </div>
+
+              <div class="step">
+                <span>04</span>
+                Teach someone else
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         VISION
+    ========================= -->
+
+    <section id="vision" class="vision">
+
+      <div class="container reveal">
+
+        <div class="section-label">
+          06 — Vision
+        </div>
+
+        <h2>
+          I'm not building a portfolio.
+          I'm building a future.
+        </h2>
+
+        <p class="vision-text">
+          My goal isn't simply to get a job.
+          I want to build my own company, create technology products,
+          build a team, and create an environment where people can
+          learn, build and teach each other.
+        </p>
+
+        <p class="vision-text">
+          I want to start with one person, help them learn,
+          and eventually create a community where every person
+          can become capable of teaching another.
+        </p>
+
+
+        <div class="cycle">
+
+          <div class="cycle-item">
+            Learn
+          </div>
+
+          <div class="arrow">→</div>
+
+          <div class="cycle-item">
+            Build
+          </div>
+
+          <div class="arrow">→</div>
+
+          <div class="cycle-item">
+            Teach
+          </div>
+
+          <div class="arrow">→</div>
+
+          <div class="cycle-item">
+            Multiply
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         SOCIAL
+    ========================= -->
+
+    <section id="social">
+
+      <div class="container">
+
+        <div class="section-header reveal">
+
+          <div class="section-label">
+            07 — Follow
+          </div>
+
+          <h2 class="section-title">
+            Follow the journey.
+          </h2>
+
+          <p class="section-description">
+            Programming, experiments, projects and the journey
+            of building Omar Script.
+          </p>
+
+        </div>
+
+
+        <div class="socials reveal">
+
+          <a
+            class="social"
+            href="https://www.youtube.com/@omarscript2"
+            target="_blank"
+            rel="noopener"
+          >
+            YouTube
+          </a>
+
+          <a
+            class="social"
+            href="https://www.tiktok.com/@omarscript2"
+            target="_blank"
+            rel="noopener"
+          >
+            TikTok
+          </a>
+
+          <a
+            class="social"
+            href="https://www.instagram.com/omar_script1/"
+            target="_blank"
+            rel="noopener"
+          >
+            Instagram
+          </a>
+
+          <a
+            class="social"
+            href="https://x.com/omarscript1"
+            target="_blank"
+            rel="noopener"
+          >
+            X
+          </a>
+
+          <a
+            class="social"
+            href="https://github.com/omarprogramming036-bit"
+            target="_blank"
+            rel="noopener"
+          >
+            GitHub
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- =========================
+       FOOTER
+  ========================= -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-top">
+
+        <div>
+
+          <div class="logo">
+
+            <div class="logo-mark">
+              O<span>|</span>S
+            </div>
+
+            <span>Omar Script</span>
+
+          </div>
+
+          <p class="footer-sub">
+            I don't just use technology. I build it.
+          </p>
+
+        </div>
+
+        <a href="#home" class="btn btn-secondary">
+          Back to top ↑
+        </a>
+
+      </div>
+
+      <div class="copyright">
+        © <span id="year"></span> Omar Script. Built with curiosity.
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
+  <script>
+
+    // Navbar background on scroll
+
+    const header = document.getElementById("header");
+
+    window.addEventListener("scroll", () => {
+
+      if (window.scrollY > 30) {
+        header.classList.add("scrolled");
+      } else {
+        header.classList.remove("scrolled");
+      }
+
+    });
+
+
+    // Mobile menu
+
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+
+    menuBtn.addEventListener("click", () => {
+      navLinks.classList.toggle("active");
+    });
+
+
+    // Close mobile menu after clicking a link
+
+    document.querySelectorAll(".nav-links a").forEach(link => {
+
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("active");
+      });
+
+    });
+
+
+    // Reveal animation
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach(entry => {
+
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+          }
+
+        });
+
+      },
+      {
+        threshold: 0.12
+      }
+    );
+
+
+    document.querySelectorAll(".reveal").forEach(element => {
+      observer.observe(element);
+    });
+
+
+    // Current year
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+  </script>
+
+</body>
+</html>
